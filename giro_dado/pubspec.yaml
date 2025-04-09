@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/images/dado1.png
     - assets/images/dado2.png
+    - assets/images/dado3.png
     - assets/images/dado4.png
     - assets/images/dado5.png
     - assets/images/dado6.png
