@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'dart:async';
 
 void main() {
   runApp(
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -28,12 +30,62 @@ class HomeDado extends StatefulWidget {
 }
 
 class _HomeDadoState extends State<HomeDado> {
-  var rutaDado = 'assets/images/dado1.png';
+  var _rutaDado = 'assets/images/dado1.png';
+  var _i = 1;
+  var _estaAnimado = false;
 
-  void girarDado(){
-    setState(() {
-      rutaDado = 'assets/images/dado5.png';
-    });
+  Future<void> girarDado() async {
+    print("Bandera:  $_estaAnimado");
+    if (!_estaAnimado) {
+      _estaAnimado = true;
+      List<String> listaDados = [
+        'assets/images/dado1.png',
+        'assets/images/dado5.png',
+        'assets/images/dado2.png',
+        'assets/images/dado4.png',
+        'assets/images/dado3.png',
+        'assets/images/dado6.png',        
+        'assets/images/dado1.png',
+        'assets/images/dado5.png',
+        'assets/images/dado2.png',
+        'assets/images/dado4.png',
+        'assets/images/dado3.png',
+        'assets/images/dado6.png',
+        'assets/images/dado1.png',
+        'assets/images/dado5.png',
+        'assets/images/dado2.png',
+        'assets/images/dado4.png',
+        'assets/images/dado3.png',
+        'assets/images/dado6.png',        
+        'assets/images/dado1.png',
+        'assets/images/dado5.png',
+        'assets/images/dado2.png',
+        'assets/images/dado4.png',
+        'assets/images/dado3.png',
+        'assets/images/dado6.png',
+        'assets/images/dado1.png',
+        'assets/images/dado5.png',
+        'assets/images/dado2.png',
+        'assets/images/dado4.png',
+        'assets/images/dado3.png',
+        'assets/images/dado6.png',
+      ];
+
+      var duracion = const Duration(microseconds: 200);
+
+      for (var dado in listaDados) {
+        setState(() {
+          _rutaDado = dado;
+        });
+        await Future.delayed(duracion);
+      }
+
+        setState(() {
+        _i = Random().nextInt(6) + 1;
+        _rutaDado = 'assets/images/dado$_i.png';
+        _estaAnimado = false;
+      });
+    }
   }
 
   @override
@@ -50,13 +102,13 @@ class _HomeDadoState extends State<HomeDado> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                rutaDado,
+                _rutaDado,
                 width: 150,
               ),
               const SizedBox(height: 15),
-              const Text(
-                "Cara del dado: 1",
-                style: TextStyle(fontSize: 20),
+              Text(
+                'Cara del dado: $_i',
+                style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(
                 height: 15,
@@ -80,3 +132,5 @@ class _HomeDadoState extends State<HomeDado> {
     );
   }
 }
+
+//Repetir el mismo proyecto, pero en vez de girar el dado, sea seleccionar alumno
