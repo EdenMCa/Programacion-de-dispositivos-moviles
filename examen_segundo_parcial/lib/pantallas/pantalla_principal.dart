@@ -18,12 +18,12 @@ class PantallaPrincipal extends StatelessWidget {
               color: Colors.blueGrey[600],
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               'Sistema de Sorteos',
-              style: TextStyle(
+              style:  TextStyle(
                 fontSize: 30,
-                fontWeight: FontWeight.w300,
-                color: Colors.blueGrey[800],
+                fontWeight: FontWeight.bold,
+                color:   Color.fromARGB(255, 0, 0, 0),
                 letterSpacing: 1.2,
               ),
             ),
@@ -49,8 +49,8 @@ class PantallaPrincipal extends StatelessWidget {
                 ),
               ),
               style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.blueGrey[800],
-                side: BorderSide(color: Colors.blueGrey[300]!),
+                foregroundColor: Colors.blue[600],
+                side: BorderSide(color: Colors.blue[400]!),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 36,
                   vertical: 16,
