@@ -1,43 +1,62 @@
-import 'package:flutter/material.dart';
-import 'dart:math';
-import 'dart:async';
+//Nombre: Rosendo Eden Mendoza Casarrubia 
+//Descripción: Aplicación que selecciona la imagen de un alumno de forma aleatoria.
+//Importaciones básicas para Flutter y funcionalidades Dart
+import 'package:flutter/material.dart'; // Para widgets y Material Design
+import 'dart:math'; // Para generar números aleatorios (clase Random)
+import 'dart:async'; // Para operaciones asíncronas (Future, async/await)
 
+// Punto de entrada principal de la aplicación
 void main() {
   runApp(
-    const MyApp(),
+    const MyApp(), // Inicializa la aplicación con el widget raíz
   );
 }
 
+// Widget raíz sin estado que configura la aplicación básica
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-  });
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeImagen(),
+      home: HomeImagen(), // Define la pantalla principal de la app
     );
   }
 }
 
+// Widget con estado para manejar la lógica de selección de alumnos
 class HomeImagen extends StatefulWidget {
   const HomeImagen({super.key});
+
   @override
-  State<HomeImagen> createState() {
-    return _HomeImagenState();
-  }
+  State<HomeImagen> createState() => _HomeImagenState();
 }
 
+// Clase de estado que contiene la lógica y variables mutables
 class _HomeImagenState extends State<HomeImagen> {
-  var _rutaImagen = 'assets/images/compa_1.jpeg';
-  var _i = 1;
-  var _estaAnimado = false;
+  // Variables de estado
+  var _rutaImagen = 'assets/images/compa_1.jpeg'; // Ruta de imagen inicial
+  var _i = 1; // Índice del alumno actual (1-7)
+  var _estaAnimado = false; // Control de animación en progreso
 
+  // Lista de nombres de alumnos 
+  final List<String> _nombresAlumnos = [
+    'Albert',
+    'Kevin',
+    'Elton',
+    'Diana',
+    'Eden',
+    'Amelia',
+    'Sergio' 
+  ];
+
+  // Método para simular la selección aleatoria con animación
   Future<void> girarImagen() async {
     print("Bandera:  $_estaAnimado");
-    if (!_estaAnimado) {
-      _estaAnimado = true;
+    if (!_estaAnimado) { // Evita ejecuciones simultáneas
+      _estaAnimado = true; // Activa bloqueo
+
+      // Lista ordenada de imágenes para la animación
       List<String> listaImagen = [
         "assets/images/compa_1.jpeg",
         "assets/images/compa_2.jpeg",
@@ -48,58 +67,64 @@ class _HomeImagenState extends State<HomeImagen> {
         "assets/images/compa_7.jpeg"
       ];
 
-      var duracion = const Duration(milliseconds: 200);
+      var duracion = const Duration(milliseconds: 100); // Velocidad de la transición
 
+      // Recorre todas las imágenes para efecto de animación
       for (var imagen in listaImagen) {
-        setState(() {
-          _rutaImagen = imagen;
+        setState(() { 
+          _rutaImagen = imagen; // Cambia la imagen mostrada
         });
-        await Future.delayed(duracion);
+        await Future.delayed(duracion); // Pausa entre cambios
       }
 
+      // Selección final aleatoria
       setState(() {
-        _i = Random().nextInt(7) + 1;
-        _rutaImagen = 'assets/images/compa_$_i.jpeg';
+        _i = Random().nextInt(7) + 1; // Genera número entre 1-7
+        _rutaImagen = 'assets/images/compa_$_i.jpeg'; // Actualiza imagen final
         _estaAnimado = false;
       });
     }
   }
 
+  // Construcción de la interfaz de usuario
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            gradient: RadialGradient(
-          colors: [Colors.red, Colors.blue],
-          radius: 1.5,
+            gradient: RadialGradient( // Fondo degradado
+          colors: [Colors.red, Colors.blue], // Colores del gradiente
+          radius: 1.5, // Tamaño del efecto radial
         )),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center, // Centrado vertical
             children: [
+              // Widget para mostrar la imagen del alumno
               Image.asset(
                 _rutaImagen,
-                width: 150,
+                width: 250, // Ancho fijo
+                fit: BoxFit.cover, // Ajuste de imagen
+              ),
+              const SizedBox(height: 15), // Espaciador
+              // Texto que muestra el nombre del alumno seleccionado
+              Text(
+                'Alumno seleccionado: ${_nombresAlumnos[_i - 1]}', 
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: 15),
-              Text(
-                'Imagen: $_i',
-                style: const TextStyle(fontSize: 20),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
+              // Botón para iniciar la selección
               ElevatedButton.icon(
-                onPressed: girarImagen,
-                icon: const Icon(Icons.refresh),
-                label: const Text(
-                  "Girar imagen",
-                ),
+                onPressed: girarImagen, // Asocia el método de acción
+                icon: const Icon(Icons.refresh), // Icono de recarga
+                label: const Text("Girar imagen"), // Texto descriptivo
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  textStyle: const TextStyle(fontSize: 20),
+                  backgroundColor: Colors.blue, // Color principal
+                  foregroundColor: Colors.white, // Color de texto/icono
+                  textStyle: const TextStyle(fontSize: 20), // Tamaño de fuente
                 ),
               )
             ],
