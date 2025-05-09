@@ -102,6 +102,20 @@ class _HomeImagenState extends State<HomeImagen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, // Centrado vertical
             children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 60.0, bottom: 40),
+                child: Text(
+                  'Sorteo de alumnos del 603',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w500, // Medium weight para formalidad
+                    color: Colors.white,
+                    letterSpacing: 0.8, // Espaciado sutil
+                    height: 1.4, // Interlineado adecuado
+                  ),
+                ),
+              ),
               // Widget para mostrar la imagen del alumno
               Image.asset(
                 _rutaImagen,
@@ -113,7 +127,7 @@ class _HomeImagenState extends State<HomeImagen> {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'cd{_nombresAlumnos[_i - 1]}', 
+                'Ganador: ${_nombresAlumnos[_i - 1]}', 
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
