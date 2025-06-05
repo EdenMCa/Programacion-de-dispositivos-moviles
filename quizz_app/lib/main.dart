@@ -31,7 +31,8 @@ class MyApp extends StatefulWidget {
 // Clase de estado que maneja la lógica principal de la aplicación
 class _MyAppState extends State<MyApp> {
   String currentScreen = "home-screen"; // Controla la pantalla actual
-  final List<String> SelectedAnswer = []; // Almacena las respuestas seleccionadas
+  final List<String> SelectedAnswer =
+      []; // Almacena las respuestas seleccionadas
 
   // Método para cambiar a la pantalla de preguntas
   void switchScreen() {
@@ -57,11 +58,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // Pantalla inicial por defecto
     Widget screen = HomePage(startQuiz: switchScreen);
-    
+
     // Cambia a pantalla de preguntas si corresponde
     if (currentScreen == "question_screen") {
       screen = QuizBody(addSelectAnswer: addSelectAnswer);
-    } 
+    }
     // Cambia a pantalla de resultados si corresponde
     else if (currentScreen == "results_screen") {
       screen = ResultsScreen(
@@ -81,11 +82,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.deepPurpleAccent, // Color de fondo
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-            textStyle: const TextStyle(fontSize: 20),
-           ) // Estilo de botones
-        ),
+            style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+          textStyle: const TextStyle(fontSize: 20),
+        ) // Estilo de botones
+            ),
       ),
       home: screen, // Pantalla actual a mostrar
     );
@@ -113,7 +114,8 @@ class HomePage extends StatelessWidget {
             // Botón de inicio
             ElevatedButton.icon(
               onPressed: startQuiz, // Llama a la función de inicio
-              icon: const Icon(Icons.play_circle_fill_outlined), // Ícono de play
+              icon:
+                  const Icon(Icons.play_circle_fill_outlined), // Ícono de play
               label: const Text("Iniciar"), // Texto del botón
             ),
           ],

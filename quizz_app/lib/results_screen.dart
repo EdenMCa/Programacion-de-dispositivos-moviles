@@ -57,11 +57,11 @@ class ResultsScreen extends StatelessWidget {
                     // Tarjeta por pregunta
                     return Card(
                       margin: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
+                        horizontal: 50,
+                        vertical: 5,
+                      ),  
                       child: Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -113,13 +113,13 @@ class ResultsScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: ElevatedButton.icon(
                   onPressed: onRestart,
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Reintentar'),
+                  icon: const Icon(Icons.home, size: 30,),
+                  label: const Text('Volver al inicio'),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 12,
-                    ),
+                    ) ,
                   ),
                 ),
               ),
@@ -130,3 +130,4 @@ class ResultsScreen extends StatelessWidget {
     );
   }
 }
+

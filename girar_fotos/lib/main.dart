@@ -103,7 +103,7 @@ class _HomeImagenState extends State<HomeImagen> {
               // Widget para mostrar la imagen del alumno
               Image.asset(
                 _rutaImagen,
-                width: 250, // Ancho fijo
+                width: 250, // Ancho fijo 
                 fit: BoxFit.cover, // Ajuste de imagen
               ),
               const SizedBox(height: 15), // Espaciador
